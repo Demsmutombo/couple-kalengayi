@@ -1,0 +1,229 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Palette mariage : rose vif, rose doux, ivoire rosé, pêche.
+ * Thème sombre : fonds chauds profonds, texte ivoire / rose doux.
+ */
+:root {
+  --primary: #ed4d8b;
+  --primary-soft: #f3a8bb;
+  --secondary: #fcf1f0;
+  --accent: #fbbf80;
+  --gold: #fbbf80;
+  --brand-dark: #120d10;
+  --subtle: #7a5f68;
+  --page: #ffffff;
+  --night: #150f12;
+  --night-elevated: #22181e;
+  --splash-mid: #1a0f14;
+  /** Bas des dégradés / zone vidéo (noir chaud) */
+  --void: #0a0708;
+  /* Swiper : défaut bleu iOS → palette */
+  --swiper-theme-color: #ed4d8b;
+  --swiper-navigation-color: #fcf1f0;
+  --swiper-navigation-size: 44px;
+}
+
+.dark {
+  --subtle: #c4aab4;
+}
+
+@theme {
+  --color-primary: var(--primary);
+  --color-primary-soft: var(--primary-soft);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-gold: var(--gold);
+  --color-brand-dark: var(--brand-dark);
+  --color-subtle: var(--subtle);
+  --color-page: var(--page);
+  --color-night: var(--night);
+  --color-night-elevated: var(--night-elevated);
+  --color-splash-mid: var(--splash-mid);
+  --color-void: var(--void);
+  --font-display: 'Great Vibes', cursive;
+  --font-body: 'Montserrat', system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-page font-body text-brand-dark antialiased transition-colors duration-300;
+    @apply dark:bg-night dark:text-secondary;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-secondary {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  .section-title {
+    @apply relative mb-8 text-center;
+  }
+
+  .section-title::before,
+  .section-title::after {
+    content: '';
+    @apply absolute bottom-[11px] h-0.5 w-[60px] bg-primary;
+  }
+
+  .section-title::before {
+    left: calc(50% - 80px);
+  }
+
+  .section-title::after {
+    right: calc(50% - 80px);
+  }
+
+  .btn-play {
+    @apply relative mx-auto mt-12 box-content block w-4 border-0 bg-page p-0 outline-none dark:bg-night-elevated;
+    height: 26px;
+    padding: 18px 20px 20px 28px;
+    border-radius: 100%;
+  }
+
+  .btn-play::before {
+    content: '';
+    @apply absolute left-1/2 top-1/2 z-0 block h-[60px] w-[60px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-page dark:bg-night;
+    animation: pulse-border 1.5s ease-out infinite;
+  }
+
+  .btn-play::after {
+    content: '';
+    @apply absolute left-1/2 top-1/2 z-[1] block h-[60px] w-[60px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-page transition-all duration-200 dark:bg-night;
+  }
+
+  .btn-play span {
+    @apply relative z-[3] -left-px block h-0 w-0;
+    border-left: 16px solid var(--color-primary);
+    border-top: 11px solid transparent;
+    border-bottom: 11px solid transparent;
+  }
+
+  .gallery-item {
+    @apply relative overflow-hidden;
+  }
+
+  .gallery-item img {
+    @apply transition-transform duration-500;
+  }
+
+  .gallery-item:hover img {
+    @apply scale-[1.2];
+  }
+
+  .gallery-item .gallery-zoom {
+    @apply absolute left-1/2 top-1/2 flex h-[60px] w-[60px] -translate-x-1/2 -translate-y-1/2 items-center justify-center border-2 border-secondary opacity-0 transition-opacity duration-500;
+  }
+
+  .gallery-item:hover .gallery-zoom {
+    @apply opacity-100;
+  }
+
+  .timeline-line {
+    @apply relative;
+  }
+
+  @media (min-width: 768px) {
+    .timeline-line::after {
+      content: '';
+      @apply absolute bottom-0 left-1/2 top-0 ml-[-1px] w-0.5 bg-primary;
+    }
+
+    .timeline-row {
+      @apply relative mb-8;
+    }
+
+    .timeline-row::before {
+      content: '';
+      @apply absolute left-1/2 top-1/2 z-[1] ml-[-15px] mt-[-15px] h-[30px] w-[30px] rotate-45 border-2 border-primary bg-page dark:bg-night-elevated;
+    }
+
+    .timeline-row::after {
+      font-family: 'Font Awesome 5 Free';
+      content: '\f004';
+      @apply absolute left-1/2 top-1/2 z-[2] ml-[-8px] mt-[-10px] text-sm text-primary;
+      font-weight: 400;
+    }
+  }
+}
+
+@keyframes pulse-border {
+  0% {
+    transform: translateX(-50%) translateY(-50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) translateY(-50%) scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes float-y {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-15px);
+  }
+}
+
+.floating-ui {
+  animation: float-y 1s ease-in-out infinite alternate;
+}
+
+/*
+ * GLightbox charge sa CSS après le bundle : spécificité `html …` pour appliquer la charte
+ * (overlay, focus, boutons).
+ */
+html .goverlay {
+  background: rgba(18, 13, 16, 0.85) !important;
+}
+
+html .glightbox-mobile .goverlay {
+  background: rgba(18, 13, 16, 0.9) !important;
+}
+
+html .gbtn.focused {
+  outline: 2px solid var(--primary) !important;
+}
+
+html .glightbox-clean .gprev,
+html .glightbox-clean .gnext,
+html .glightbox-clean .gclose {
+  background-color: rgba(18, 13, 16, 0.82) !important;
+}
+
+html .glightbox-clean .gslide-description {
+  background: var(--secondary) !important;
+}
+
+html .glightbox-clean .gslide-title {
+  color: var(--brand-dark) !important;
+}
+
+html .gprev .garrow,
+html .gnext .garrow,
+html .gclose .garrow {
+  stroke: var(--secondary) !important;
+}
+
+html .glightbox-clean .gprev path,
+html .glightbox-clean .gnext path,
+html .glightbox-clean .gclose path {
+  fill: var(--secondary) !important;
+}
+
+html .gloader {
+  border-color: var(--secondary) !important;
+  border-right-color: transparent !important;
+}
