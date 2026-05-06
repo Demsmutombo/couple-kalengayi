@@ -217,7 +217,7 @@ Quatre mois plus tard, soit le <strong>15 février 2024</strong>, Evariste franc
         subtitle: 'Témoins',
       },
       {
-        image: 'religieux salle/WhatsApp Image 2026-04-29 at 10.56.34 (7).jpeg',
+        image: 'civile commune/WhatsApp Image 2026-04-29 at 10.29.40 (1).jpeg',
         title: 'Mr Leopold Gerengbo & Mme Ruth Mwamba',
         subtitle: 'Témoins',
       },
