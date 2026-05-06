@@ -207,12 +207,12 @@ Quatre mois plus tard, soit le <strong>15 février 2024</strong>, Evariste franc
         subtitle: 'Témoin',
       },
       {
-        image: 'religieux salle/WhatsApp Image 2026-04-29 at 10.54.01 (3).jpeg',
+        image: 'religieux salle/WhatsApp Image 2026-04-29 at 10.53.59 (2).jpeg',
         title: 'Mpoyi Mbala Cimon & Epote Melanie',
         subtitle: 'Témoins',
       },
       {
-        image: 'religieux salle/WhatsApp Image 2026-04-29 at 10.54.01 (6).jpeg',
+        image: 'dote/WhatsApp Image 2026-04-29 at 11.07.11.jpeg',
         title: 'Luc Lukumwena & Charlotte Ilunga',
         subtitle: 'Témoins',
       },
