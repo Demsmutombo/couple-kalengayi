@@ -1,6 +1,47 @@
 <script setup>
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { siteContent } from '@/content'
 import { usePublicUrl } from '@/composables/usePublicUrl.js'
+
+const isMaidsModalOpen = ref(false)
+const activeMaidsIndex = ref(0)
+
+const maids = computed(() => siteContent.family.important?.members || [])
+
+function openMaidsModal(index) {
+  activeMaidsIndex.value = index
+  isMaidsModalOpen.value = true
+}
+
+function closeMaidsModal() {
+  isMaidsModalOpen.value = false
+}
+
+function prevMaidsPhoto() {
+  if (!maids.value.length) return
+  activeMaidsIndex.value =
+    (activeMaidsIndex.value - 1 + maids.value.length) % maids.value.length
+}
+
+function nextMaidsPhoto() {
+  if (!maids.value.length) return
+  activeMaidsIndex.value = (activeMaidsIndex.value + 1) % maids.value.length
+}
+
+function onKeydown(e) {
+  if (!isMaidsModalOpen.value) return
+  if (e.key === 'Escape') closeMaidsModal()
+  if (e.key === 'ArrowLeft') prevMaidsPhoto()
+  if (e.key === 'ArrowRight') nextMaidsPhoto()
+}
+
+onMounted(() => {
+  window.addEventListener('keydown', onKeydown)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', onKeydown)
+})
 </script>
 
 <template>
@@ -152,7 +193,7 @@ import { usePublicUrl } from '@/composables/usePublicUrl.js'
         </p>
       </div>
 
-      <!-- Personnes importantes : cartes séparées -->
+      <!-- Demoiselles d'honneur : photos cliquables (sans cartes) -->
       <div v-if="siteContent.family.important?.members?.length">
         <h4
           v-if="siteContent.family.important.sectionTitle"
@@ -160,33 +201,62 @@ import { usePublicUrl } from '@/composables/usePublicUrl.js'
         >
           {{ siteContent.family.important.sectionTitle }}
         </h4>
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
-          <article
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <a
             v-for="(m, i) in siteContent.family.important.members"
             :key="`important-${i}-${m.title}`"
-            class="overflow-hidden shadow-sm transition-opacity duration-300 dark:shadow-[0_12px_36px_rgba(10,7,8,0.42)]"
+            :href="usePublicUrl(`img/${m.image}`)"
+            class="group block overflow-hidden rounded shadow-sm transition-opacity duration-300 dark:shadow-[0_12px_36px_rgba(10,7,8,0.42)]"
+            :aria-label="`Ouvrir la photo ${i + 1}`"
+            @click.prevent="openMaidsModal(i)"
           >
-            <div class="relative mb-0">
-              <img
-                :src="usePublicUrl(`img/${m.image}`)"
-                :alt="m.title"
-                class="h-72 w-full object-cover md:h-80"
-                loading="lazy"
-              />
-              <div class="bg-secondary p-6 text-center dark:bg-night-elevated/80">
-                <h4 class="mb-2 text-lg font-semibold text-brand-dark dark:text-secondary">
-                  {{ m.title }}
-                </h4>
-                <p
-                  class="text-xs font-semibold uppercase tracking-wide text-brand-dark/70 dark:text-subtle"
-                >
-                  {{ m.subtitle }}
-                </p>
-              </div>
-            </div>
-          </article>
+            <img
+              :src="usePublicUrl(`img/${m.image}`)"
+              :alt="m.title || `Demoiselle d'honneur ${i + 1}`"
+              class="h-72 w-full object-cover transition duration-300 group-hover:scale-[1.02] md:h-80"
+              loading="lazy"
+            />
+          </a>
         </div>
       </div>
+    </div>
+
+    <div
+      v-if="isMaidsModalOpen && maids.length"
+      class="fixed inset-0 z-[120] flex items-center justify-center bg-brand-dark/90 px-4 py-6"
+      @click.self="closeMaidsModal"
+    >
+      <button
+        type="button"
+        class="absolute right-4 top-4 rounded border border-secondary/40 bg-secondary/15 px-4 py-2 text-sm font-semibold text-secondary transition hover:bg-secondary/25"
+        @click="closeMaidsModal"
+      >
+        Retour
+      </button>
+
+      <button
+        type="button"
+        class="absolute left-3 rounded-full border border-secondary/40 bg-secondary/15 p-3 text-secondary transition hover:bg-secondary/25 md:left-6"
+        aria-label="Photo précédente"
+        @click="prevMaidsPhoto"
+      >
+        <i class="fas fa-chevron-left" aria-hidden="true" />
+      </button>
+
+      <img
+        :src="usePublicUrl(`img/${maids[activeMaidsIndex].image}`)"
+        :alt="maids[activeMaidsIndex].title || `Demoiselle d'honneur ${activeMaidsIndex + 1}`"
+        class="max-h-[85vh] max-w-[92vw] rounded object-contain"
+      />
+
+      <button
+        type="button"
+        class="absolute right-3 rounded-full border border-secondary/40 bg-secondary/15 p-3 text-secondary transition hover:bg-secondary/25 md:right-6"
+        aria-label="Photo suivante"
+        @click="nextMaidsPhoto"
+      >
+        <i class="fas fa-chevron-right" aria-hidden="true" />
+      </button>
     </div>
   </section>
 </template>

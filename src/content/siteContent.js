@@ -36,8 +36,18 @@ export const siteContent = {
 
   hero: {
     slides: [
-      { image: 'sortie/WhatsApp Image 2026-04-29 at 10.59.33.jpeg', alt: 'Evariste & Thérèse' },
-      { image: 'religieux salle/WhatsApp Image 2026-04-29 at 10.56.34.jpeg', alt: 'Couple Kalengayi' },
+      {
+        image: 'religieux salle/WhatsApp Image 2026-04-29 at 10.43.22 (4).jpeg',
+        alt: 'Evariste & Thérèse',
+      },
+      {
+        image: 'religieux salle/WhatsApp Image 2026-04-29 at 10.43.22 (5).jpeg',
+        alt: 'Couple Kalengayi',
+      },
+      {
+        image: 'religieux salle/WhatsApp Image 2026-04-29 at 10.43.21 (2).jpeg',
+        alt: 'Mariage religieux',
+      },
     ],
   },
 
@@ -49,13 +59,13 @@ export const siteContent = {
       html: `Evariste Kalengayi, affectueusement surnommé <strong>«&nbsp;The King&nbsp;»</strong>, est un homme de vision et de détermination. Responsable administratif au sein de Etisac SARL et entrepreneur engagé, il se distingue par son sens de l’organisation, sa rigueur et son professionnalisme.<br><br>
 Doté d’un naturel chaleureux et d’un humour subtil, il apprécie la quiétude de la musique chrétienne douce. Passionné par la technologie, il consacre une part de son temps à la recherche et à l’apprentissage, ne laissant jamais place à l’improvisation. Toujours disponible et serviable, il s’investit pleinement dans tout ce qu’il entreprend.`,
       signature: 'Evariste Kalengayi',
-      image: 'sortie/WhatsApp Image 2026-04-29 at 10.59.31.jpeg',
+      image: 'coutimier/WhatsApp Image 2026-04-29 at 10.24.50 (2).jpeg',
     },
     bride: {
       title: 'La Mariée',
       html: `À ses côtés, <strong>Thérèse Ndaya</strong>, dite <strong class="text-primary">NdaThe</strong>, incarne la grâce et la créativité. Esthéticienne, couturière et entrepreneure, elle allie savoir-faire, élégance et sens du détail. Sa douceur et son esprit d’initiative apportent équilibre et harmonie dans leur relation.`,
       signature: 'Thérèse Ndaya',
-      image: 'sortie/WhatsApp Image 2026-04-29 at 10.59.33 (1).jpeg',
+      image: 'coutimier/WhatsApp Image 2026-04-29 at 10.24.50 (1).jpeg',
     },
     videoFile: null,
   },
@@ -75,7 +85,7 @@ Un instant précieux, immortalisé comme le point de départ d’une belle avent
         imageSide: 'left',
       },
       {
-        image: 'sortie/WhatsApp Image 2026-04-29 at 10.59.30.jpeg',
+        image: 'religieux salle/WhatsApp Image 2026-04-29 at 10.43.19 (1).jpeg',
         imageAlt: 'Parcours du couple',
         title: 'Leur parcours',
         date: '15 février 2024',
@@ -137,21 +147,21 @@ Quatre mois plus tard, soit le <strong>15 février 2024</strong>, Evariste franc
       'Les étapes marquantes de notre union — de la présentation familiale aux fiançailles.',
     items: [
       {
-        image: 'sortie/WhatsApp Image 2026-04-29 at 10.59.24 (1).jpeg',
+        image: 'dote/WhatsApp Image 2026-04-29 at 11.03.31 (6).jpeg',
         title: 'Présentation familiale',
         dateLabel: '15 février 2024',
         html: `Rencontre officielle des familles et engagement respectueux des traditions.`,
         videoUrl: null,
       },
       {
-        image: 'coutimier/WhatsApp Image 2026-04-29 at 10.25.09 (4).jpeg',
+        image: 'dote/WhatsApp Image 2026-04-29 at 11.07.07 (2).jpeg',
         title: 'Dot / coutume',
         dateLabel: '29 juin 2024',
         html: `Célébration des coutumes et de la dot.`,
         videoUrl: null,
       },
       {
-        image: 'coutimier/WhatsApp Image 2026-04-29 at 10.25.16 (4).jpeg',
+        image: 'coutimier/WhatsApp Image 2026-04-29 at 10.25.16 (1).jpeg',
         title: 'Coutume (suite)',
         dateLabel: '5 juillet 2024',
         html: `Poursuite des cérémonies coutumières.`,
@@ -165,24 +175,10 @@ Quatre mois plus tard, soit le <strong>15 février 2024</strong>, Evariste franc
         videoUrl: null,
       },
       {
-        image: 'religieux salle/WhatsApp Image 2026-04-29 at 10.54.00 (5).jpeg',
+        image: 'religieux salle/WhatsApp Image 2026-04-29 at 10.43.19.jpeg',
         title: 'Mariage religieux',
         dateLabel: 'Église Shekinah Tabernacle',
         html: `Célébration religieuse à l’Église Shekinah Tabernacle.`,
-        videoUrl: null,
-      },
-      {
-        image: 'sortie/WhatsApp Image 2026-04-29 at 10.59.33 (2).jpeg',
-        title: 'Demande en mariage',
-        dateLabel: '20 janvier 2025',
-        html: `Une demande et une promesse pour la vie à deux.`,
-        videoUrl: null,
-      },
-      {
-        image: 'dote/WhatsApp Image 2026-04-29 at 11.07.15 (1).jpeg',
-        title: 'Fiançailles',
-        dateLabel: '3 mars 2025',
-        html: `Engagement officialisé devant famille et proches.`,
         videoUrl: null,
       },
     ],
@@ -206,6 +202,11 @@ Quatre mois plus tard, soit le <strong>15 février 2024</strong>, Evariste franc
     },
     witnessesList: [
       {
+        image: 'religieux salle/WhatsApp Image 2026-04-29 at 10.43.22 (2).jpeg',
+        title: 'Pasteur RICHARD DIYOKA',
+        subtitle: 'Témoin',
+      },
+      {
         image: 'religieux salle/WhatsApp Image 2026-04-29 at 10.54.01 (3).jpeg',
         title: 'Mpoyi Mbala Cimon & Epote Melanie',
         subtitle: 'Témoins',
@@ -221,7 +222,41 @@ Quatre mois plus tard, soit le <strong>15 février 2024</strong>, Evariste franc
         subtitle: 'Témoins',
       },
     ],
-    important: null,
+    important: {
+      sectionTitle: "Demoiselles d'honneur",
+      members: [
+        {
+          image: 'religieux salle/WhatsApp Image 2026-04-29 at 10.56.26 (2).jpeg',
+          title: "Demoiselle d'honneur",
+          subtitle: "Demoiselles d'honneur",
+        },
+        {
+          image: 'religieux salle/WhatsApp Image 2026-04-29 at 10.56.34 (11).jpeg',
+          title: "Demoiselle d'honneur",
+          subtitle: "Demoiselles d'honneur",
+        },
+        {
+          image: 'religieux salle/WhatsApp Image 2026-04-29 at 10.56.34 (7).jpeg',
+          title: "Demoiselle d'honneur",
+          subtitle: "Demoiselles d'honneur",
+        },
+        {
+          image: 'religieux salle/WhatsApp Image 2026-04-29 at 10.56.34 (4).jpeg',
+          title: "Demoiselle d'honneur",
+          subtitle: "Demoiselles d'honneur",
+        },
+        {
+          image: 'religieux salle/WhatsApp Image 2026-04-29 at 10.56.27 (1).jpeg',
+          title: "Demoiselle d'honneur",
+          subtitle: "Demoiselles d'honneur",
+        },
+        {
+          image: 'religieux salle/WhatsApp Image 2026-04-29 at 10.56.26 (2).jpeg',
+          title: "Demoiselle d'honneur",
+          subtitle: "Demoiselles d'honneur",
+        },
+      ],
+    },
     closeKin: {
       sectionTitle: 'Enfants & proches',
       lines: [

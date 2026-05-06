@@ -10,8 +10,19 @@ import 'swiper/css/navigation'
 
 const modules = [Navigation]
 
+function shuffle(list) {
+  const arr = [...list]
+  for (let i = arr.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[arr[i], arr[j]] = [arr[j], arr[i]]
+  }
+  return arr
+}
+
+const shuffledGalleryFilenames = shuffle(siteContent.galleryFilenames || [])
+
 const slides = computed(() =>
-  (siteContent.galleryFilenames || []).map((name) => ({
+  shuffledGalleryFilenames.map((name) => ({
     name,
     href: usePublicUrl(`img/${name}`),
     thumb: usePublicUrl(`img/${name}`),

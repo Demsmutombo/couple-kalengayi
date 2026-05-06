@@ -46,8 +46,8 @@ function linkClass(hash) {
     class="fixed left-2 right-2 top-2 z-50 rounded-2xl border transition-all duration-300 sm:left-4 sm:right-4 sm:top-3"
     :class="
       scrolled
-        ? 'border-primary/30 bg-primary-soft/92 py-2 shadow-lg shadow-primary/20 backdrop-blur-md dark:border-primary-soft/45 dark:bg-primary-soft/26 dark:shadow-[0_14px_40px_rgba(18,13,16,0.38)] dark:backdrop-blur-xl'
-        : 'border-primary/25 bg-primary-soft/88 py-2.5 shadow-md shadow-primary/10 backdrop-blur-md dark:border-primary-soft/40 dark:bg-primary-soft/22 dark:shadow-md dark:shadow-primary/5 dark:backdrop-blur-xl sm:py-3'
+        ? 'border-primary/25 bg-primary-soft/58 py-2 shadow-lg shadow-primary/15 backdrop-blur-md dark:border-primary-soft/35 dark:bg-primary-soft/14 dark:shadow-[0_14px_40px_rgba(18,13,16,0.30)] dark:backdrop-blur-xl'
+        : 'border-primary/20 bg-primary-soft/48 py-2.5 shadow-md shadow-primary/10 backdrop-blur-md dark:border-primary-soft/30 dark:bg-primary-soft/12 dark:shadow-md dark:shadow-primary/5 dark:backdrop-blur-xl sm:py-3'
     "
   >
     <nav

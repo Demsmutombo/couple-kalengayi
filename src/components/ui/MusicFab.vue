@@ -1,5 +1,5 @@
 <script setup>
-import { onUnmounted, ref, computed } from 'vue'
+import { onMounted, onUnmounted, ref, computed } from 'vue'
 import { siteContent } from '@/content'
 import { usePublicUrl } from '@/composables/usePublicUrl.js'
 
@@ -11,6 +11,7 @@ const audioEl = ref(null)
 const show = computed(
   () => siteContent.music?.enabled && siteContent.music?.src,
 )
+const showFab = ref(false)
 
 const trackUrl = computed(() =>
   show.value ? usePublicUrl(siteContent.music.src) : '',
@@ -28,6 +29,10 @@ function onError() {
   loadError.value = true
 }
 
+function updateFabVisibility() {
+  showFab.value = window.scrollY > 120
+}
+
 function toggle() {
   const a = audioEl.value
   if (!a || loadError.value) return
@@ -40,15 +45,21 @@ function toggle() {
   }
 }
 
+onMounted(() => {
+  updateFabVisibility()
+  window.addEventListener('scroll', updateFabVisibility, { passive: true })
+})
+
 onUnmounted(() => {
+  window.removeEventListener('scroll', updateFabVisibility)
   audioEl.value?.pause()
 })
 </script>
 
 <template>
   <div
-    v-if="show"
-    class="pointer-events-none fixed bottom-8 left-8 z-20 sm:bottom-10 sm:left-10"
+    v-if="show && showFab"
+    class="pointer-events-none fixed bottom-6 left-4 z-30 sm:bottom-8 sm:left-8"
   >
     <audio
       ref="audioEl"
@@ -62,7 +73,7 @@ onUnmounted(() => {
     />
     <button
       type="button"
-      class="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full border-2 border-primary bg-primary-soft/95 text-primary shadow-lg shadow-primary/20 transition hover:scale-105 hover:bg-primary hover:text-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:scale-95 dark:border-primary-soft dark:bg-primary-soft/35 dark:text-secondary dark:shadow-[0_12px_36px_rgba(237,77,139,0.2)] dark:hover:bg-primary dark:hover:text-secondary"
+      class="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full border-2 border-primary bg-secondary text-primary shadow-lg shadow-primary/20 transition hover:scale-105 hover:bg-primary hover:text-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:scale-95 dark:border-primary-soft dark:bg-night-elevated dark:text-secondary dark:shadow-[0_12px_36px_rgba(237,77,139,0.2)] dark:hover:bg-primary dark:hover:text-secondary"
       :class="loadError ? 'cursor-not-allowed opacity-50' : ''"
       :title="siteContent.music?.titleHover"
       :aria-pressed="isPlaying"
